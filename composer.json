@@ -1,13 +1,13 @@
 {
-  "name": "adamwojs/php-activiti-api",
+  "name": "zhusipu/php-activiti-api",
   "type": "library",
   "description": "Activiti REST API Client",
   "keywords": [],
   "license": "MIT",
   "authors": [
     {
-      "name": "Adam Wójs",
-      "email": "adam@wojs.pl"
+      "name": "zhusipu",
+      "email": "zhusipu123@163.com"
     }
   ],
   "require": {
