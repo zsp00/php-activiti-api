@@ -37,7 +37,7 @@ class ExecutionService extends AbstractService implements ExecutionServiceInterf
     /**
      * {@inheritdoc}
      */
-    public function getExecutionsList(ExecutionQuery $query = null)
+    public function getExecutionList(ExecutionQuery $query = null)
     {
         return $this->call(function (ClientInterface $client) use ($query) {
             return $client->request('GET', 'runtime/executions', [
