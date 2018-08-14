@@ -25,7 +25,7 @@ interface ExecutionServiceInterface
      * @see https://www.activiti.org/userguide/#_get_active_activities_in_an_execution
      *
      * @param executionId $executionId
-     * @return Array
+     * @return Activities
      */
     public function getActivities($executionId);
 

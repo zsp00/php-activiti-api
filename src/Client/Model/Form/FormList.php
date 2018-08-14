@@ -3,14 +3,15 @@
  * Created by IntelliJ IDEA.
  * User: zhusipu
  * Date: 2018/8/14
- * Time: 上午10:50
+ * Time: 下午4:29
  */
 
-namespace Activiti\Client\Model\Execution;
+namespace Activiti\Client\Model\Form;
+
 
 use Activiti\Client\Model\AbstractList;
 
-class ExecutionList extends AbstractList
+class FormList extends AbstractList
 {
 
 }

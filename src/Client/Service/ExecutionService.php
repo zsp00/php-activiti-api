@@ -5,6 +5,7 @@ namespace Activiti\Client\Service;
 use Activiti\Client\Model\Execution\Execution;
 use Activiti\Client\Model\Execution\ExecutionList;
 use Activiti\Client\Model\Execution\ExecutionQuery;
+use Activiti\Client\Model\Task\Activities;
 use GuzzleHttp\ClientInterface;
 use function GuzzleHttp\uri_template;
 
@@ -33,7 +34,7 @@ class ExecutionService extends AbstractService implements ExecutionServiceInterf
             return $client->request('GET', uri_template('runtime/executions/{executionId}/activities', [
                 'executionId' => $executionId
             ]));
-        });
+        }, Activities::class);
     }
 
     /**

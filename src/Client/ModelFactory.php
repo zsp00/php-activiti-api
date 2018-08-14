@@ -6,6 +6,10 @@ use Activiti\Client\Model\Deployment\Deployment;
 use Activiti\Client\Model\Deployment\DeploymentList;
 use Activiti\Client\Model\Deployment\Resource;
 use Activiti\Client\Model\Execution\Execution;
+use Activiti\Client\Model\Execution\ExecutionList;
+use Activiti\Client\Model\Form\Form;
+use Activiti\Client\Model\Form\FormList;
+use Activiti\Client\Model\Form\FormSubmitResult;
 use Activiti\Client\Model\Group\Group;
 use Activiti\Client\Model\Group\GroupList;
 use Activiti\Client\Model\Group\GroupMember;
@@ -17,6 +21,7 @@ use Activiti\Client\Model\ProcessDefinition\ProcessDefinition;
 use Activiti\Client\Model\ProcessDefinition\ProcessDefinitionList;
 use Activiti\Client\Model\ProcessInstance\ProcessInstance;
 use Activiti\Client\Model\ProcessInstance\ProcessInstanceList;
+use Activiti\Client\Model\Task\Activities;
 use Activiti\Client\Model\Task\Attachment;
 use Activiti\Client\Model\Task\AttachmentList;
 use Activiti\Client\Model\Task\Comment;
@@ -211,7 +216,7 @@ class ModelFactory implements ModelFactoryInterface
      */
     public function createProcessInstance(array $data)
     {
-        foreach($data['variables'] as $i => $variableData) {
+        foreach ($data['variables'] as $i => $variableData) {
             $data['variables'][$i] = $this->createVariable($variableData);
         }
 
@@ -243,7 +248,7 @@ class ModelFactory implements ModelFactoryInterface
      */
     public function createTask(array $data)
     {
-        foreach($data['variables'] as $i => $variableData) {
+        foreach ($data['variables'] as $i => $variableData) {
             $data['variables'][$i] = $this->createVariable($variableData);
         }
 
@@ -324,11 +329,36 @@ class ModelFactory implements ModelFactoryInterface
 
     public function createExecution(array $data)
     {
-        var_dump($data);
-        foreach($data['variables'] as $i => $variableData) {
-            $data['variables'][$i] = $this->createVariable($variableData);
+        return new Execution($data);
+    }
+
+    public function createExecutionList(array $data)
+    {
+        foreach ($data['data'] as $i => $taskData) {
+            $data['data'][$i] = $this->createExecution($taskData);
         }
 
-        return new Execution($data);
+        return new ExecutionList($data);
+    }
+
+    public function createActivities(array $data) {
+        return new Activities($data);
+    }
+
+    public function createForm(array $data)
+    {
+        return new Form($data);
+    }
+
+    public function createFormList(array $data)
+    {
+        foreach($data['data'] as $i => $form) {
+            $data['data'][$i] = $this->createForm($form);
+        }
+        return new FormList($data);
+    }
+
+    public function createFormSubmitResult(array $data){
+        return new FormSubmitResult($data);
     }
 }

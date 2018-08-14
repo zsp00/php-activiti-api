@@ -64,4 +64,14 @@ interface ModelFactoryInterface
 
     public function createExecution(array $data);
 
+    public function createExecutionList(array $data);
+
+    public function createActivities(array $data);
+
+    public function createForm(array $data);
+
+    public function createFormList(array $data);
+
+    public function createFormSubmitResult(array $data);
+
 }
