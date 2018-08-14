@@ -39,7 +39,6 @@ abstract class AbstractService
         try {
             /** @var ResponseInterface $response */
             $response = $callable($this->client);
-
             $contents = $response->getBody()->getContents();
             if ($class !== null) {
                 return $this->hydrate($class, $this->decode($contents));
@@ -47,7 +46,19 @@ abstract class AbstractService
 
             return $contents;
         } catch (RequestException $ex) {
-            throw new ActivitiException($ex->getMessage(), 0, $ex);
+            $message = null;
+            $contents = $ex->getResponse()->getBody()->getContents();
+            if ($contents !== null) {
+                $contents = $this->decode($contents);
+                if (array_key_exists('msg', $contents)) {
+                    $message = $contents['msg'];
+                }
+            }
+            
+            if ($message === null) {
+                $message = $ex->getMessage();
+            }
+            throw new ActivitiException($message, 0, $ex);
         }
     }
 
