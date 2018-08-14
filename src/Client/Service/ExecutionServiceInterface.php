@@ -17,4 +17,14 @@ interface ExecutionServiceInterface
      * @return Execution
      */
     public function getExecution($executionId);
+
+  /**
+     * Get list of deployments.
+     *
+     * @see https://www.activiti.org/userguide/#_get_active_activities_in_an_execution
+     *
+     * @param executionId $executionId
+     * @return Array
+     */
+    public function getActivities($executionId);
 }

@@ -10,6 +10,7 @@ use Activiti\Client\Service\ProcessInstanceService;
 use Activiti\Client\Service\TaskService;
 use Activiti\Client\Service\UserService;
 use GuzzleHttp\ClientInterface;
+use Activiti\Client\Service\ExecutionService;
 
 class ServiceFactory implements ServiceFactoryInterface
 {
@@ -89,5 +90,12 @@ class ServiceFactory implements ServiceFactoryInterface
     public function createUserService()
     {
         return new UserService($this->client, $this->modelFactory, $this->objectSerializer);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createExecutionService() {
+        return new ExecutionService($this->client, $this->modelFactory, $this->objectSerializer);
     }
 }
