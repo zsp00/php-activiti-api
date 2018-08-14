@@ -5,6 +5,7 @@ namespace Activiti\Client\Service;
 use Activiti\Client\Model\Execution\Execution;
 use Activiti\Client\Model\Execution\ExecutionList;
 use Activiti\Client\Model\Execution\ExecutionQuery;
+use GuzzleHttp\ClientInterface;
 
 class ExecutionService extends AbstractService implements ExecutionServiceInterface
 {
