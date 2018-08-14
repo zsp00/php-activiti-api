@@ -6,6 +6,7 @@ use Activiti\Client\Model\Execution\Execution;
 use Activiti\Client\Model\Execution\ExecutionList;
 use Activiti\Client\Model\Execution\ExecutionQuery;
 use GuzzleHttp\ClientInterface;
+use function GuzzleHttp\uri_template;
 
 class ExecutionService extends AbstractService implements ExecutionServiceInterface
 {
