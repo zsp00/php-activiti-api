@@ -17,9 +17,9 @@ class ExecutionService extends AbstractService implements ExecutionServiceInterf
     public function getExecution($executionId)
     {
         return $this->call(function (ClientInterface $client) use ($executionId) {
-            return $client->request('GET', 'runtime/executions/{executionId}', [
+            return $client->request('GET', uri_template('runtime/executions/{executionId}', [
                 'executionId' => $executionId
-            ]);
+            ]));
         }, Execution::class);
     }
 

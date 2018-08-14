@@ -5,6 +5,7 @@ namespace Activiti\Client;
 use Activiti\Client\Model\Deployment\Deployment;
 use Activiti\Client\Model\Deployment\DeploymentList;
 use Activiti\Client\Model\Deployment\Resource;
+use Activiti\Client\Model\Execution\Execution;
 use Activiti\Client\Model\Group\Group;
 use Activiti\Client\Model\Group\GroupList;
 use Activiti\Client\Model\Group\GroupMember;
@@ -319,5 +320,15 @@ class ModelFactory implements ModelFactoryInterface
         }
 
         return new VariableList($data);
+    }
+
+    public function createExecution(array $data)
+    {
+        var_dump($data);
+        foreach($data['variables'] as $i => $variableData) {
+            $data['variables'][$i] = $this->createVariable($variableData);
+        }
+
+        return new Execution($data);
     }
 }

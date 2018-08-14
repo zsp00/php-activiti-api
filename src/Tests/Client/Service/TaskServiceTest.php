@@ -34,7 +34,7 @@ class TaskServiceTest extends AbstractServiceTest
         $client = $this->createClient($this->createJsonResponse($expected, 200));
         $actual = $this
             ->createTaskService($client)
-            ->queryTask(new TaskQuery([]));
+            ->queryTasks(new TaskQuery(['name' => '123']));
 
         $this->assertRequestMethod('POST');
         $this->assertRequestUri('query/tasks');

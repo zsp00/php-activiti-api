@@ -62,4 +62,6 @@ interface ModelFactoryInterface
 
     public function createVariableList(array $data);
 
+    public function createExecution(array $data);
+
 }
