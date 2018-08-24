@@ -53,4 +53,8 @@ class Comment
     {
         return $this->data['processInstanceUrl'];
     }
+
+    public function getData() {
+        return $this->data;
+    }
 }

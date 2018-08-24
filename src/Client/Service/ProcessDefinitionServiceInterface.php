@@ -130,4 +130,10 @@ interface ProcessDefinitionServiceInterface
      * @return IdentityLink
      */
     public function getCandidateStarter($processDefinitionId, $family, $identityId);
+
+    /**
+     * @param $processDefinitionId
+     * @return mixed
+     */
+    public function getImageResource($processDefinitionId);
 }

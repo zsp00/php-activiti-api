@@ -3,7 +3,9 @@
 namespace Activiti\Client;
 
 use Activiti\Client\Service\DeploymentServiceInterface;
+use Activiti\Client\Service\FormService;
 use Activiti\Client\Service\GroupServiceInterface;
+use Activiti\Client\Service\HistoryService;
 use Activiti\Client\Service\ManagementServiceInterface;
 use Activiti\Client\Service\ProcessDefinitionServiceInterface;
 use Activiti\Client\Service\ProcessInstanceServiceInterface;
@@ -51,4 +53,14 @@ interface ServiceFactoryInterface
      * @return ExecutionServiceInterface
      */
     public function createExecutionService();
+
+    /**
+     * @return FormService
+     */
+    public function createFormService();
+
+    /**
+     * @return HistoryService
+     */
+    public function createHistoryService();
 }

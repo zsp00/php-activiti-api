@@ -133,4 +133,12 @@ class Task
     {
         return $this->data['variables'];
     }
+
+    public function getData() {
+        $result = $this->data;
+        foreach($result['variables'] as $k=>$v){
+            $result['variables'][$k] = $v->getData();
+        }
+        return $result;
+    }
 }

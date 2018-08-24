@@ -188,4 +188,15 @@ class ProcessDefinitionService extends AbstractService implements ProcessDefinit
             ]);
         }, ProcessDefinition::class);
     }
+
+
+    public function getImageResource($processDefinitionId){
+        return $this->call(function (ClientInterface $client) use ($processDefinitionId) {
+            $uri = uri_template('repository/process-definitions/{processDefinitionId}/image', [
+                'processDefinitionId' => $processDefinitionId,
+            ]);
+
+            return $client->request('GET', $uri);
+        });
+    }
 }

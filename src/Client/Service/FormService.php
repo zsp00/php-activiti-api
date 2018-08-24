@@ -9,39 +9,47 @@
 namespace Activiti\Client\Service;
 
 
+use Activiti\Client\Model\Form\Form;
 use Activiti\Client\Model\Form\FormList;
 use Activiti\Client\Model\Form\FormSubmit;
 use Activiti\Client\Model\Form\FormSubmitResult;
+use GuzzleHttp\ClientInterface;
+use function GuzzleHttp\uri_template;
 
 class FormService extends AbstractService implements FormServiceInterface
 {
 
     /**
-     * Get list of deployments.
-     *
-     * @see https://www.activiti.org/userguide/#_get_form_data
-     *
-     * @param taskId $taskId
-     * @param processDefinitionId $processDefinitionId
-     * @return FormList
+     * {@inheritdoc}
      */
-    public function getFormData($taskId, $processDefinitionId)
+    public function getFormDataByTaskId($taskId)
     {
-        return $this->call(function (ClientInterface $client) use ($taskId, $processDefinitionId) {
+        return $this->call(function (ClientInterface $client) use ($taskId) {
+            return $client->request('GET', 'form/form-data', [
+                    'query' => [
+                        'taskId' => $taskId
+                    ]
+                ]
+            );
+        }, Form::class);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFormDataByProcessDefinitionId($processDefinitionId)
+    {
+        return $this->call(function (ClientInterface $client) use ($processDefinitionId) {
             return $client->request('GET', uri_template('form/form-data', [
-                'taskId' => $taskId,
-                'processDefinitionId' => $processDefinitionId
+                'query' => [
+                    'processDefinitionId' => $processDefinitionId
+                ]
             ]));
         }, FormList::class);
     }
 
     /**
-     * Get list of deployments.
-     *
-     * @see https://www.activiti.org/userguide/#_submit_task_form_data
-     *
-     * @param FormSubmit $formSubmit
-     * @return FormList
+     * {@inheritdoc}
      */
     public function submitTaskFormData(FormSubmit $formSubmit)
     {

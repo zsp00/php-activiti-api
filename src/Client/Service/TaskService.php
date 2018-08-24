@@ -312,15 +312,14 @@ class TaskService extends AbstractService implements TaskServiceInterface
 
             switch ($family) {
                 case 'groups':
-                    $payload['groupId'] = $identityId;
+                    $payload['group'] = $identityId;
                     break;
                 case 'users':
-                    $payload['userId'] = $identityId;
+                    $payload['user'] = $identityId;
                     break;
                 default:
                     throw new \InvalidArgumentException("Invalid family: $family");
             }
-
             return $client->request('POST', $uri, [
                 'json' => $payload,
             ]);

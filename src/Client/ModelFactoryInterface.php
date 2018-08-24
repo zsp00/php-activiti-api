@@ -46,6 +46,8 @@ interface ModelFactoryInterface
 
     public function createResource(array $data);
 
+    public function createResourceList(array $data);
+
     public function createTask(array $data);
 
     public function createTaskList(array $data);

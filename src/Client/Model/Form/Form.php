@@ -32,7 +32,7 @@ class Form
     }
 
     public function setDeploymentId($deploymentId) {
-        $this->data['$deploymentId'] = $deploymentId;
+        $this->data['deploymentId'] = $deploymentId;
     }
 
     public function getProcessDefinitionId() {
@@ -68,12 +68,20 @@ class Form
     }
 
     public function getFormProperties() {
-        return $this->data['formProperties'];
+        if (array_key_exists('formProperties', $this->data)) {
+            return $this->data['formProperties'];
+        } else {
+            return [];
+        }
     }
 
     public function setFormProperties($formProperties) {
         foreach($formProperties as $formPropertie) {
-           $this->data['formProperties'][] = new FormProperties($formPropertie);
+            $formPropertieEntry = new FormProperty([]);
+            foreach($formPropertie as $k=>$v) {
+                $formPropertieEntry->{'set'.ucfirst($k)}($v);
+            }
+            $this->data['formProperties'][] = $formPropertieEntry;
         }
     }
 

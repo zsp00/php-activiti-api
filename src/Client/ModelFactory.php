@@ -5,6 +5,8 @@ namespace Activiti\Client;
 use Activiti\Client\Model\Deployment\Deployment;
 use Activiti\Client\Model\Deployment\DeploymentList;
 use Activiti\Client\Model\Deployment\Resource;
+use Activiti\Client\Model\Deployment\ResourceData;
+use Activiti\Client\Model\Deployment\ResourceList;
 use Activiti\Client\Model\Execution\Execution;
 use Activiti\Client\Model\Execution\ExecutionList;
 use Activiti\Client\Model\Form\Form;
@@ -246,6 +248,18 @@ class ModelFactory implements ModelFactoryInterface
     /**
      * @inheritdoc
      */
+    public function createResourceList(array $data)
+    {
+        $result = [];
+        foreach($data as $v) {
+            $result[] = new Resource($result);
+        }
+        return new ResourceList($result);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function createTask(array $data)
     {
         foreach ($data['variables'] as $i => $variableData) {
@@ -347,7 +361,11 @@ class ModelFactory implements ModelFactoryInterface
 
     public function createForm(array $data)
     {
-        return new Form($data);
+        $form = new Form([]);
+        foreach($data as $k => $v) {
+            $form->{'set'.ucfirst($k)}($v);
+        }
+        return $form;
     }
 
     public function createFormList(array $data)

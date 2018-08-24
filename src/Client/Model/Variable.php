@@ -35,4 +35,8 @@ class Variable
     {
         return $this->data['scope'];
     }
+
+    public function getData() {
+        return $this->data;
+    }
 }

@@ -20,10 +20,19 @@ interface FormServiceInterface
      * @see https://www.activiti.org/userguide/#_get_form_data
      *
      * @param taskId $taskId
-     * @param processDefinitionId $processDefinitionId
      * @return FormList
      */
-    public function getFormData($taskId, $processDefinitionId);
+    public function getFormDataByTaskId($taskId);
+
+    /**
+     * Get list of deployments.
+     *
+     * @see https://www.activiti.org/userguide/#_get_form_data
+     *
+     * @param taskId $taskId
+     * @return FormList
+     */
+    public function getFormDataByProcessDefinitionId($processDefinitionId);
 
     /**
      * Get list of deployments.

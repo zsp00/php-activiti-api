@@ -21,4 +21,16 @@ class IdentityLinkList implements \IteratorAggregate
     {
         return new \ArrayIterator($this->items);
     }
+
+    public function groupToUsers() {
+        $result = [
+            'assignee'  =>  [],
+            'candidate' =>  []
+        ];
+        $items = new \ArrayIterator($this->items);
+        foreach($items as $item) {
+            $result[$item->getType()][] = $item->getUser();
+        }
+        return $result;
+    }
 }

@@ -40,21 +40,23 @@ abstract class AbstractService
             /** @var ResponseInterface $response */
             $response = $callable($this->client);
             $contents = $response->getBody()->getContents();
-            if ($class !== null) {
+            if ($class !== null && $contents !== '') {
                 return $this->hydrate($class, $this->decode($contents));
             }
 
             return $contents;
         } catch (RequestException $ex) {
             $message = null;
-            $contents = $ex->getResponse()->getBody()->getContents();
-            if ($contents !== null) {
-                $contents = $this->decode($contents);
-                if (array_key_exists('msg', $contents)) {
-                    $message = $contents['msg'];
+            if ($ex->getResponse() !== null) {
+                $contents = $ex->getResponse()->getBody()->getContents();
+                if ($contents !== null) {
+                    $contents = $this->decode($contents);
+                    if (array_key_exists('msg', $contents)) {
+                        $message = $contents['msg'];
+                    }
                 }
             }
-            
+
             if ($message === null) {
                 $message = $ex->getMessage();
             }

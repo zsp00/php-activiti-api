@@ -45,4 +45,14 @@ interface DeploymentServiceInterface
      * @return void
      */
     public function delete($deploymentId);
+
+
+    /**
+     * List resources in a deployment
+     * @see https://www.activiti.org/userguide/#_list_resources_in_a_deployment
+     *
+     * @param string $deploymentId
+     * @return void
+     */
+    public function getDeploymentResources($deploymentId);
 }
