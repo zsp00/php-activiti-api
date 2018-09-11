@@ -15,6 +15,8 @@ use Activiti\Client\Model\Form\FormSubmitResult;
 use Activiti\Client\Model\Group\Group;
 use Activiti\Client\Model\Group\GroupList;
 use Activiti\Client\Model\Group\GroupMember;
+use Activiti\Client\Model\History\HistoricTaskInstances;
+use Activiti\Client\Model\History\HistoricTaskInstancesList;
 use Activiti\Client\Model\IdentityLink;
 use Activiti\Client\Model\IdentityLinkList;
 use Activiti\Client\Model\Management\Engine;
@@ -244,7 +246,7 @@ class ModelFactory implements ModelFactoryInterface
     {
         return new Resource($data);
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -252,7 +254,7 @@ class ModelFactory implements ModelFactoryInterface
     {
         $result = [];
         foreach($data as $v) {
-            $result[] = new Resource($result);
+            $result[] = new Resource($v);
         }
         return new ResourceList($result);
     }
@@ -378,5 +380,16 @@ class ModelFactory implements ModelFactoryInterface
 
     public function createFormSubmitResult(array $data){
         return new FormSubmitResult($data);
+    }
+
+    public function createHistoricTaskInstances(array $data) {
+        return new HistoricTaskInstances($data);
+    }
+
+    public function createHistoricTaskInstancesList(array $data) {
+        foreach($data['data'] as $i => $historicTaskInstances) {
+            $data['data'][$i] = $this->createHistoricTaskInstances($historicTaskInstances);
+        }
+        return new HistoricTaskInstancesList($data);
     }
 }

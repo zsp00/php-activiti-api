@@ -2,8 +2,11 @@
 
 namespace Activiti\Client\Service;
 
+use Activiti\Client\Model\History\HistoricTaskInstancesQuery;
 use Activiti\Client\Model\History\HistoryQuery;
 use Activiti\Client\Model\Task\CommentList;
+use Activiti\Client\Model\Task\TaskList;
+use app\common\model\Task;
 
 interface HistoryServiceInterface
 {
@@ -33,10 +36,10 @@ interface HistoryServiceInterface
      *
      * @see https://www.activiti.org/userguide/#restHistoricTaskInstancesGet
      *
-     * @param HistoryQuery $historyQuery
-     * @return mixed
+     * @param HistoricTaskInstancesQuery $historyQuery
+     * @return TaskList
      */
-    public function historyTask(HistoryQuery $historyQuery);
+    public function historyTask(HistoricTaskInstancesQuery $historicTaskInstancesQuery);
 
     /**
      * @see https://www.activiti.org/userguide/#_get_a_comment_on_a_historic_process_instance

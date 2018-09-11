@@ -8,6 +8,7 @@
 
 namespace Activiti\Client\Service;
 
+use Activiti\Client\Model\Form\Form;
 use Activiti\Client\Model\Form\FormList;
 use Activiti\Client\Model\Form\FormSubmit;
 use Activiti\Client\Model\Form\FormSubmitResult;
@@ -20,7 +21,7 @@ interface FormServiceInterface
      * @see https://www.activiti.org/userguide/#_get_form_data
      *
      * @param taskId $taskId
-     * @return FormList
+     * @return Form
      */
     public function getFormDataByTaskId($taskId);
 

@@ -43,7 +43,6 @@ abstract class AbstractService
             if ($class !== null && $contents !== '') {
                 return $this->hydrate($class, $this->decode($contents));
             }
-
             return $contents;
         } catch (RequestException $ex) {
             $message = null;

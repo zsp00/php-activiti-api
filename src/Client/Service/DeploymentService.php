@@ -6,6 +6,8 @@ use Activiti\Client\Model\Deployment\Deployment;
 use Activiti\Client\Model\Deployment\DeploymentList;
 use Activiti\Client\Model\Deployment\DeploymentQuery;
 use Activiti\Client\Model\Deployment\Resource;
+use Activiti\Client\Model\Deployment\ResourceData;
+use Activiti\Client\Model\Deployment\ResourceList;
 use GuzzleHttp\ClientInterface;
 use function GuzzleHttp\uri_template;
 
@@ -73,16 +75,16 @@ class DeploymentService extends AbstractService implements DeploymentServiceInte
      * @see https://www.activiti.org/userguide/#_list_resources_in_a_deployment
      *
      * @param string $deploymentId
-     * @return void
+     * @return ResourceList
      */
     public function getDeploymentResources($deploymentId)
     {
-        $this->call(function (ClientInterface $client) use ($deploymentId) {
+        return $this->call(function (ClientInterface $client) use ($deploymentId) {
             $uri = uri_template('repository/deployments/{deploymentId}/resources', [
                 'deploymentId' => $deploymentId,
             ]);
 
             return $client->request('GET', $uri);
-        }, Resource::class);
+        }, ResourceList::class);
     }
 }

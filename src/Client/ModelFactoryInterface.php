@@ -45,7 +45,7 @@ interface ModelFactoryInterface
     public function createProcessInstanceList(array $data);
 
     public function createResource(array $data);
-
+    
     public function createResourceList(array $data);
 
     public function createTask(array $data);
@@ -75,5 +75,9 @@ interface ModelFactoryInterface
     public function createFormList(array $data);
 
     public function createFormSubmitResult(array $data);
+
+    public function createHistoricTaskInstances(array $data);
+
+    public function createHistoricTaskInstancesList(array $data);
 
 }

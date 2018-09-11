@@ -2,11 +2,14 @@
 
 namespace Activiti\Client\Service;
 
+use Activiti\Client\Model\History\HistoricTaskInstancesList;
+use Activiti\Client\Model\History\HistoricTaskInstancesQuery;
 use Activiti\Client\Model\History\HistoryActivityInstance;
 use Activiti\Client\Model\History\HistoryQuery;
 use Activiti\Client\Model\ProcessInstance\ProcessInstanceList;
 use Activiti\Client\Model\Task\Comment;
 use Activiti\Client\Model\Task\CommentList;
+use Activiti\Client\Model\Task\TaskList;
 use GuzzleHttp\ClientInterface;
 use function GuzzleHttp\uri_template;
 
@@ -39,13 +42,13 @@ class HistoryService extends AbstractService implements HistoryServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function historyTask(HistoryQuery $historyQuery)
+    public function historyTask(HistoricTaskInstancesQuery $historicTaskInstancesQuery)
     {
-        return $this->call(function (ClientInterface $client) use ($historyQuery) {
+        return $this->call(function (ClientInterface $client) use ($historicTaskInstancesQuery) {
             return $client->request('GET', 'history/historic-task-instances', [
-                'query' => $this->serializer->serialize($historyQuery),
+                'query' => $this->serializer->serialize($historicTaskInstancesQuery),
             ]);
-        }, ProcessInstanceList::class);
+        }, TaskList::class);
     }
 
     /**

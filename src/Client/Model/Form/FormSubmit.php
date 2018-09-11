@@ -46,7 +46,7 @@ class FormSubmit
     /**
      * @param mixed $properties
      */
-    public function setProperties(FormProperty $properties)
+    public function setProperties(FormProperties $properties)
     {
         $this->properties = $properties;
     }
