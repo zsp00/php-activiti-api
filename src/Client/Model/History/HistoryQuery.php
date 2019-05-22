@@ -19,6 +19,7 @@ class HistoryQuery extends AbstractQuery
     private $taskAssignee;
     private $processInstanceId;
     private $processDefinitionId;
+    private $processDefinitionKey;
     private $involvedUser;
 
     /**
@@ -227,6 +228,22 @@ class HistoryQuery extends AbstractQuery
     public function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProcessDefinitionKey()
+    {
+        return $this->processDefinitionKey;
+    }
+
+    /**
+     * @param mixed $processDefinitionKey
+     */
+    public function setProcessDefinitionKey($processDefinitionKey)
+    {
+        $this->processDefinitionKey = $processDefinitionKey;
     }
 
     /**
